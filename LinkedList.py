@@ -29,8 +29,20 @@ class LinkedList:
         self.head = new_node
         return
 
-    def delete(self):
-        pass
+    def delete(self, item):
+        prev_song = self.head
+        current = self.head
+
+        if current.data == item:
+            self.head = self.head.next
+
+        while current.data != item:
+            prev_song = current
+            current = current.next
+
+        if current.data == item:
+            next_item = current.next
+            prev_song.next = next_item
 
     def find(self):
         pass
