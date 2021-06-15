@@ -30,22 +30,37 @@ class LinkedList:
         return
 
     def delete(self, item):
-        prev_song = self.head
+        prev = self.head
         current = self.head
 
         if current.data == item:
             self.head = self.head.next
 
         while current.data != item:
-            prev_song = current
+            prev = current
             current = current.next
 
-        if current.data == item:
-            next_item = current.next
-            prev_song.next = next_item
+            if current == None:
+                return -1
 
-    def find(self):
-        pass
+            if current.data == item:
+                next_item = current.next
+                prev.next = next_item
+
+    def find(self, item):
+        '''Find a specific item in the linked list, return the node, if not found return None'''
+        current = self.head
+        itemFound = False
+
+        while current != None:
+            if item == current.data:
+                itemFound = True
+                return current
+
+            current = current.next
+
+        if itemFound == False:
+            return None
 
     def print_list(self):
         current = self.head
@@ -53,3 +68,37 @@ class LinkedList:
         while current is not None:
             print(current.data)
             current = current.next
+
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.next = None
+        self.prev = None
+        self.head = None
+
+    def dll_append(self, data):
+        new_node = Node(data)
+        last = self.head
+        new_node.next = None
+
+        if self.head is None:
+            new_node.prev = None
+            self.head = new_node
+            return
+
+        last.next = new_node
+        new_node.prev = last
+
+    def dll_print(self):
+        node = self.head
+        last = None
+        print("List forwards ")
+        while (node != None):
+            print(node.data)
+            last = node
+            node = node.next
+
+        print("\nList backwards ")
+        while (last != None):
+            print(last.data)
+            last = last.prev
