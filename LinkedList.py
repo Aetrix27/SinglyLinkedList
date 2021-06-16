@@ -2,7 +2,11 @@ class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
-
+class dll_Node:
+    def __init__(self, data):
+        self.data = data
+        self.prev = None
+        self.next = None
 
 class LinkedList:
 
@@ -77,7 +81,7 @@ class DoublyLinkedList:
         self.head = None
 
     def dll_append(self, data):
-        new_node = Node(data)
+        new_node = dll_Node(data)
         last = self.head
         new_node.next = None
 
@@ -102,3 +106,12 @@ class DoublyLinkedList:
         while (last != None):
             print(last.data)
             last = last.prev
+
+    def dll_prepend(self, data):
+        node = self.head
+        new_node = dll_Node(data)
+        new_node.next = self.head
+        self.head = new_node
+        node.prev = new_node
+
+        return
